@@ -13,10 +13,13 @@ namespace ImprovedWorkCenter.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ClubId { get; set; }
 
+        [Required]
+        [ForeignKey(nameof(Socio))]
+        public int SocioId { get; set; }
+
         [Required(ErrorMessage = "Debe ingresar el nombre del club"), MaxLength(100)]
         public string Nombre { get; set; }
         public List<Socio> ListaSocios { get; set; }
-        public List<Socio> ListaDeudores { get; set; }
         public List<Plan> ListaPlanes { get; set; }
         public List<Actividad> ListaActividades { get; set; }
 

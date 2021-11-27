@@ -34,7 +34,7 @@ namespace ImprovedWorkCenter
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddDbContext<ImprovedWorkCenterContext>(options => options.UseSqlServer(Configuration["ConnectionString:ImprovedWorkCenterBDConnection"]));
+            services.AddDbContext<ImprovedWorkCenterContext>(options => options.UseSqlServer(Configuration["ConnectionString:ImprovedWorkCenterDBConnection"]));
             services.AddMvc().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }

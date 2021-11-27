@@ -9,13 +9,12 @@ namespace ImprovedWorkCenter.Context
 {
     public class ImprovedWorkCenterContext : DbContext
     {
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ImprovedWorkCenterContext(DbContextOptions<ImprovedWorkCenterContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=LAPTOP-9APFC4I1\\SQLEXPRESS;Database=ImprovedWorkCenterDB;Trusted_Connection=True;");
         }
 
         public DbSet<Club> Clubs { get; set; }
+
         public DbSet<Actividad> Socios { get; set; }
         public DbSet<Plan> Planes { get; set; }
         public DbSet<Socio> Actividades { get; set; }

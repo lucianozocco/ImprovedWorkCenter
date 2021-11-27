@@ -79,6 +79,9 @@ namespace ImprovedWorkCenter.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<int>("SocioId")
+                        .HasColumnType("int");
+
                     b.HasKey("ClubId");
 
                     b.ToTable("Clubs");
@@ -117,10 +120,7 @@ namespace ImprovedWorkCenter.Migrations
                     b.Property<string>("Apellido")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ClubId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ClubId1")
+                    b.Property<int>("ClubId")
                         .HasColumnType("int");
 
                     b.Property<string>("Contrasenia")
@@ -131,6 +131,9 @@ namespace ImprovedWorkCenter.Migrations
 
                     b.Property<int>("Edad")
                         .HasColumnType("int");
+
+                    b.Property<bool>("EsDeudor")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FechaInscripcion")
                         .HasColumnType("nvarchar(max)");
@@ -147,8 +150,6 @@ namespace ImprovedWorkCenter.Migrations
                     b.HasKey("SocioId");
 
                     b.HasIndex("ClubId");
-
-                    b.HasIndex("ClubId1");
 
                     b.ToTable("Actividades");
                 });
@@ -185,12 +186,10 @@ namespace ImprovedWorkCenter.Migrations
             modelBuilder.Entity("ImprovedWorkCenter.Models.Socio", b =>
                 {
                     b.HasOne("ImprovedWorkCenter.Models.Club", null)
-                        .WithMany("ListaDeudores")
-                        .HasForeignKey("ClubId");
-
-                    b.HasOne("ImprovedWorkCenter.Models.Club", null)
                         .WithMany("ListaSocios")
-                        .HasForeignKey("ClubId1");
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

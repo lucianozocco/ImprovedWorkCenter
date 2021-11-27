@@ -13,12 +13,18 @@ namespace ImprovedWorkCenter.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SocioId { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(Club))]
+        public int ClubId { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int Edad { get; set; }
         public string Domicilio { get; set; }
         public string Mail { get; set; }
         public string Contrasenia { get; set; }
+
+        public Boolean EsDeudor { get; set; }
 
         [Display(Name = "Fecha inscripción")]
         public string FechaInscripcion { get; set; }
